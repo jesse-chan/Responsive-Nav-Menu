@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Responsive Navigation Menu</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css" rel="stylesheet"/>
+    <link href="src/rnm.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/js/all.min.js"></script>
+    <script src="src/rnm.js"></script>
+    <style>
+        nav {
+            height: 80px;
+            background: #bbbbbb;
+            color: black;
+        }
+    </style>
+    <script>
+      $().ready(function () {
+        $('#rnmRoot').rnm({
+          'autoExpand': false,
+          'openSign': '<i class="fas fa-angle-double-up"></i>',
+          'closeSign': '<i class="fas fa-angle-double-down"></i>'
+        });
+      });
+    </script>
+</head>
+<body>
+<nav id="rnmRoot">
+    <ul>
+        <li>
+            <div><i class="fas fa-audio-description"></i> Top Menu 01</div>
+        </li>
+        <li>
+            <div><img height="64" width="64" src="assets/file.png">  Top Menu 02 (branched menu)</div>
+            <ul>
+                <li>
+                    <div><img height="64" width="64" src="assets/email.png"> Sub Menu 02-01</div>
+                </li>
+                <li>
+                    <div><i class="fas fa-cart-arrow-down"></i> Sub Menu 02-02</div>
+                    <ul>
+                        <li><div>Sub Menu 02-02-01</div></li>
+                        <li><div>Sub Menu 02-02-02</div></li>
+                        <li><div>Sub Menu 02-02-03</div></li>
+                    </ul>
+                </li>
+                <li>
+                    <div><img height="64" width="64" src="assets/tools.png"> 子選單 2-3</div>
+                    <ul>
+                        <li><div>Sub Menu 02-03-01</div></li>
+                        <li>
+                            <div>Sub Menu 02-03-02</div>
+                            <ul>
+                                <li><div>Sub Menu 02-03-02-01</div></li>
+                                <li><div>Sub Menu 02-02-02-02</div></li>
+                                <li class="-rnm-divider-"></li>
+                                <li><div>Sub Menu 02-02-02-03</div></li>
+                                <li><div>Sub Menu 02-02-02-03</div></li>
+                            </ul>
+                        </li>
+                        <li class="-rnm-divider-"></li>
+                        <li><div>Sub Menu 02-03-03</div></li>
+                    </ul>
+                </li>
+                <li>
+                    <div><i class="fas fa-lock"></i> Sub Menu 02-04</div>
+                </li>
+            </ul>
+        </li>
+        <li class="-rnm-disabled-">
+            <div><i class="fab fa-bluetooth"></i> Top Menu 03</div>
+        </li>
+        <li>
+            <div>Top Menu 04 (disabled menu)</div>
+            <ul>
+                <li>
+                    <div>Sub Menu 04-01</div>
+                </li>
+                <li>
+                    <div>Sub Menu 04-02</div>
+                </li>
+                <li class="-rnm-divider-"></li>
+                <li>
+                    <div>Sub Menu 04-03</div>
+                </li>
+                <li>
+                    <div>Sub Menu 04-04</div>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <div><img height="64" width="64" src="assets/help.png"> Top Menu 05</div>
+        </li>
+        <li class="-rnm-divider-"></li>
+        <li>
+            <div><i class="fas fa-info-circle"></i> Top Menu 06</div>
+        </li>
+    </ul>
+</nav>
+</body>
+</html>
