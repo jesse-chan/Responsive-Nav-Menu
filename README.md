@@ -70,7 +70,8 @@ Structure
  * .-rnm-root- .-rnm-nav-|.-rnm-ham- .-rnm-open-|.-rnm-close-
  * (rnmMaxDepth) store max level of menu
  * (rnmTopUlWidth) store the total width of visible list items
- * (dividerWidth) top ul divider width
+ * (dividerWidth) top li divider width
+ * (dividerHeight) top li divider line-height
  
  ```
 <NAV.-rnm-root-#-rnm-[n]->

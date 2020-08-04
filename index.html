@@ -27,12 +27,16 @@
 </head>
 <body>
 <nav id="rnmRoot">
+    <div id="logo" style="display:inline-block; line-height:80px; margin-left:10px; font-size: 32px; font-weight: 800; color: white;">
+        <img src="assets/home.png" height="64" width="64" style="vertical-align: middle;">
+        RNM
+    </div>
     <ul>
         <li>
             <div><i class="fas fa-audio-description"></i> Top Menu 01</div>
         </li>
         <li>
-            <div><img height="64" width="64" src="assets/file.png">  Top Menu 02 (branched menu)</div>
+            <div><img height="64" width="64" src="assets/file.png">  Top Menu 02 (branch)</div>
             <ul>
                 <li>
                     <div><img height="64" width="64" src="assets/email.png"> Sub Menu 02-01</div>
@@ -68,11 +72,12 @@
                 </li>
             </ul>
         </li>
+        <li class="-rnm-divider-"></li>
         <li class="-rnm-disabled-">
-            <div><i class="fab fa-bluetooth"></i> Top Menu 03</div>
+            <div><i class="fab fa-bluetooth"></i> Top Menu 03 (disabled)</div>
         </li>
         <li>
-            <div>Top Menu 04 (disabled menu)</div>
+            <div>Top Menu 04</div>
             <ul>
                 <li>
                     <div>Sub Menu 04-01</div>
@@ -91,10 +96,6 @@
         </li>
         <li>
             <div><img height="64" width="64" src="assets/help.png"> Top Menu 05</div>
-        </li>
-        <li class="-rnm-divider-"></li>
-        <li>
-            <div><i class="fas fa-info-circle"></i> Top Menu 06</div>
         </li>
     </ul>
 </nav>

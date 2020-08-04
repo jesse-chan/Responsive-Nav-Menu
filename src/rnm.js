@@ -1,5 +1,5 @@
 /*
- * RNM V 1.0
+ * RNM V 1.01
  * Responsive Navigation Menu
  * @author Jesse Chan <jesse.chan@hotmail.com>
  * @license MIT
@@ -138,16 +138,30 @@ function _rnm_init_class_(jroot) {
     // add .-rnm-top-li-
     // set the font-size of .-rnm-top-li-
     // set font-size 0 to .-rnm-top-ul- to avoid inline-block gaps
-    // store lineHeight dividerHeight to .-rnm-top-ul-
+    // store lineHeight to .-rnm-top-li-
+    let f = 0;
     $(jroot.data().id + ' .-rnm-lv0- > li').each(function () {
         let t = $(this);
         let lh = parseFloat(t.children('div').css('height'));
+        let fs = t.css('font-size');
+        if (parseFloat(fs) > f)
+            f = parseFloat(fs);
         if (isNaN(lh))
-            t.addClass('-rnm-top-li-').css({'font-size': t.css('font-size')});
+            t.addClass('-rnm-top-li-').css({'font-size': fs});
         else
-            t.addClass('-rnm-top-li-').css({'font-size': t.css('font-size')}).data('lineHeight', (lh + 8) + 'px');
+            t.addClass('-rnm-top-li-').css({'font-size': fs}).data('lineHeight', (lh + 8) + 'px');
     });
     $(jroot.data().id + ' .-rnm-lv0-').css('font-size', 0).data('level', 0);
+    // calculate the top divider height
+    let n = parseFloat(jroot.css('height'));
+    if ((n-20) > (f + 16))
+      jroot.data('dividerHeight', (n-20) + 'px');
+    else {
+      if ((f + 16) > n)
+        jroot.data('dividerHeight', (n-8) + 'px');
+      else
+        jroot.data('dividerHeight', (f+16) + 'px');
+    }
     // store dividerWidth to jroot
     let a = (jroot.data().dividerStyle === undefined)?[]:jroot.data().dividerStyle.split(' ');
     let w = 0;
@@ -228,7 +242,14 @@ function _rnm_init_event_handler_(jroot) {
 //====== events handler ======
 function _rnm_resize_(e) {
     let jroot = e.data;
-    if (parseFloat(jroot.css('width')) > jroot.data('rnmTopUlWidth')) {
+    let w = jroot.outerWidth();
+    let iw = 0;
+    jroot.children().each(function (){
+        let t = $(this);
+        if ((t.hasClass('-rnm-top-ul-') === false)&&(t.hasClass('-rnm-ham-icon-') === false))
+            iw += (t.outerWidth() + parseFloat(t.css('margin-left')) + parseFloat(t.css('margin-right')));
+    });
+    if ((parseFloat(jroot.css('width')) - iw) > jroot.data('rnmTopUlWidth')) {
         if (jroot.hasClass('-rnm-nav-') === false) {
             _rnm_nav_(jroot);
         }
@@ -290,7 +311,7 @@ function _rnm_ham_(jroot) {
     // remove .-rnm-nav-, add .-rnm-ham-
     jroot.removeClass('-rnm-nav- -rnm-open-').addClass('-rnm-ham- -rnm-close-')
     // set .-rnm-top-ul- .-rnm-top-li- css
-    tu.css({'line-height': '', 'top': tu.data('navLineHeight'), 'height': ''});
+    tu.css({'line-height': '', 'top': tu.data('navLineHeight'), 'height': '', 'display': ''});
     $(jroot.data().id + ' .-rnm-top-li- ').each(function (){
         let t = $(this);
         t.css('line-height', t.data('lineHeight'));
@@ -304,12 +325,14 @@ function _rnm_nav_(jroot) {
     // remove .-rnm-ham-, add .-rnm-nav-
     jroot.removeClass('-rnm-ham- -rnm-close-').addClass('-rnm-nav- -rnm-open-')
     // set .-rnm-top-ul- .-rnm-top-li- css
-    tu.css({'line-height': tu.data('navLineHeight'), 'top': '0', 'height': tu.data('navLineHeight')});
+    tu.css({'line-height': tu.data('navLineHeight'), 'top': '0', 'height': tu.data('navLineHeight'), 'display': 'inline-block'});
     $(jroot.data().id + ' .-rnm-top-li- ').each(function (){
         let t = $(this);
         t.css('line-height', '');
     });
-    $(jroot.data().id + ' .-rnm-top-li-.-rnm-divider-').css({'line-height': tu.data('lineHeight'), 'width': jroot.data('dividerWidth')});
+    $(jroot.data().id + ' .-rnm-top-li-.-rnm-divider-').css({'line-height': jroot.data('dividerHeight'), 'width': jroot.data('dividerWidth')});
+    // adjust .-rnm-top-ul- position
+    tu.css('top', (jroot.position().top - tu.position().top) + 'px');
 }
 // open sub ul at nav state
 function _rnm_nav_open_ul_(jroot, j){

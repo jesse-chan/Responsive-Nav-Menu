@@ -9,13 +9,14 @@
     box-sizing: border-box;
 }
 .-rnm-top-ul- {
-    position: relative;
     margin: 0;
     padding: 0;
 }
 .-rnm-nav- .-rnm-top-ul- {
+    position: relative;
 }
 .-rnm-ham- .-rnm-top-ul- {
+    position: static;
 }
 .-rnm-sub-ul- {
     padding-left: 0;
