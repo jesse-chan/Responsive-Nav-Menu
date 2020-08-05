@@ -1,5 +1,5 @@
 /*
- * RNM V 1.02
+ * RNM V 1.03
  * Responsive Navigation Menu
  * @author Jesse Chan <jesse.chan@hotmail.com>
  * @license MIT
