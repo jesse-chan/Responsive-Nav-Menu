@@ -33,10 +33,12 @@ $.prototype.rnm = function(arg = null) {
         sessionStorage.setItem(id, this.html());
         let o = {
             'id': '#' + id,
+            'zIndex':10,
             'autoExpand':true,
             'openSign':'▲',
             'closeSign':'▼',
             'dividerStyle':'1px solid black',
+            'topLiSpacing':'10px',
             'topUlStyle':[
                 'background:#bbbbbb;color:black;',    // nav
                 'background:#bbbbbb;color:black;box-shadow:12px 12px 7px #777777;border:1px solid #777777;',    // ham
@@ -87,7 +89,11 @@ function _rnm_initial_(jroot) {
 function _rnm_init_css_(jroot) {
     let id = jroot.data().id;
     let s = '<style>';
-    let sa = jroot.data('topUlStyle');
+    let sa = jroot.data('topLiSpacing');
+    if (sa !== undefined)
+        s += _rnm_css_string(id + ' .-rnm-top-li- > div, ' + id + ' .-rnm-sub-li- > div', 'padding: 0 ' + sa);
+    console.log(_rnm_css_string(id + '.-rnm-top-li- > div, ' + id + ' .-rnm-sub-li- > div', 'padding: 0 ' + sa));
+    sa = jroot.data('topUlStyle');
     if (sa !== undefined) {
         s += _rnm_css_string(id + '.-rnm-nav- .-rnm-top-ul-', sa[0]);
         s += _rnm_css_string(id + '.-rnm-ham- .-rnm-top-ul-', sa[1]);
@@ -134,7 +140,7 @@ function _rnm_init_class_(jroot) {
     // add .-rnm-lv0- .-rnm-top-ul-
     // store navLineHeight
     let tu = jroot.children('ul:first');
-    tu.addClass('-rnm-top-ul- -rnm-lv0-').data('navLineHeight', jroot.css('height')).css('width', jroot.outerWidth);
+    tu.addClass('-rnm-top-ul- -rnm-lv0-').data('navLineHeight', jroot.css('height')).css('z-index', jroot.data().zIndex);
     // add .-rnm-top-li-
     // set the font-size of .-rnm-top-li-
     // set font-size 0 to .-rnm-top-ul- to avoid inline-block gaps

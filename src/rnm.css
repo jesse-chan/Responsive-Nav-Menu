@@ -44,9 +44,6 @@
 .-rnm-ham- .-rnm-top-li-, .-rnm-ham- .-rnm-sub-li- {
     width: 100%;
 }
-.-rnm-top-li- > div, .-rnm-sub-li- > div {
-    padding: 0 10px;
-}
 .-rnm-ham- .-rnm-top-li- > div, .-rnm-ham- .-rnm-sub-li- > div {
     text-align: center;
 }

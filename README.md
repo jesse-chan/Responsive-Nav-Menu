@@ -36,12 +36,13 @@ All source codes are available under the [MIT](https://opensource.org/licenses/m
 
 ### Config
 
-    {   
-            'id': '#' + id,
+    {
+            'zIndex':10,   
             'autoExpand':true,
             'openSign':'▲',
             'closeSign':'▼',
             'dividerStyle':'1px solid black',
+            'topLiSpacing':'10px',
             'topUlStyle':[
               'background:#bbbbbb;color:black;',    // nav
               'background:#bbbbbb;color:black;box-shadow:12px 12px 7px #777777;border:1px solid #777777;',    // ham
