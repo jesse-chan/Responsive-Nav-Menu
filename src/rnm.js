@@ -1,5 +1,5 @@
 /*
- * RNM V 1.01
+ * RNM V 1.02
  * Responsive Navigation Menu
  * @author Jesse Chan <jesse.chan@hotmail.com>
  * @license MIT
@@ -208,7 +208,7 @@ function _rnm_init_data_(jroot) {
     while (l > 0) {
         $(jroot.data().id + ' .-rnm-lv' + l + '-').each(function () {
             let t = $(this);
-            let w = parseFloat(t.css('width'));
+            let w = parseFloat(t.css('width')) + 8;
             t.data('width', w + 'px');
         });
         $(jroot.data().id + ' .-rnm-lv' + l + '- > li').each(function () {
@@ -336,10 +336,10 @@ function _rnm_nav_(jroot) {
 }
 // open sub ul at nav state
 function _rnm_nav_open_ul_(jroot, j){
+    let u = j.children('.-rnm-sub-ul-');
     if (j.parent().data('level') > 0) {
         let o = j.offset();
         let w = j.outerWidth();
-        let u = j.children('.-rnm-sub-ul-');
         let r = window.innerWidth - o.left - w;
         u.css('top', '');
         let t = parseFloat(u.css('top')) - j.outerHeight();
@@ -351,6 +351,8 @@ function _rnm_nav_open_ul_(jroot, j){
             } else
                 u.css({'width': u.data('width')});
         }
+    } else {
+        u.css({'width': u.data('width')});
     }
 }
 // close all sub ul
