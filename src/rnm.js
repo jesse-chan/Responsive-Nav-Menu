@@ -92,7 +92,6 @@ function _rnm_init_css_(jroot) {
     let sa = jroot.data('topLiSpacing');
     if (sa !== undefined)
         s += _rnm_css_string(id + ' .-rnm-top-li- > div, ' + id + ' .-rnm-sub-li- > div', 'padding: 0 ' + sa);
-    console.log(_rnm_css_string(id + '.-rnm-top-li- > div, ' + id + ' .-rnm-sub-li- > div', 'padding: 0 ' + sa));
     sa = jroot.data('topUlStyle');
     if (sa !== undefined) {
         s += _rnm_css_string(id + '.-rnm-nav- .-rnm-top-ul-', sa[0]);
